@@ -1,0 +1,63 @@
+body {
+  font-family: "Poppins", sans-serif;
+
+  display: grid;
+  grid-template-columns: 30% auto;
+  grid-template-rows: 120px auto;
+  grid-template-areas:
+    "hd hd"
+    "side main";
+}
+
+header {
+  font-family: "Kaisei HarunoUmi", serif;
+  grid-area: hd;
+  margin-bottom: 1rem;
+  background: rgb(174, 187, 238);
+  background: rgb(149, 185, 222);
+  background: linear-gradient(
+    90deg,
+    rgba(149, 185, 222, 1) 0%,
+    rgba(57, 90, 136, 1) 31%,
+    rgba(53, 113, 143, 1) 73%,
+    rgba(149, 185, 222, 1) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+h1 {
+  color: white;
+}
+
+aside {
+  grid-area: side;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+  background-color: #f0f8ff;
+}
+main {
+  grid-area: main;
+  margin-inline: 1rem;
+}
+#searchCity {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  font-size: 1.5rem;
+}
+input[type="text"] {
+  display: block;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+button {
+  border-radius: 0.5rem;
+  background-color: rgba(149, 185, 222, 1);
+  color: rgb(19, 8, 121);
+}
+hr {
+  width: 100%;
+  border-color: black;
+}
