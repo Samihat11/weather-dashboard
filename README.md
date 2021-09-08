@@ -13,9 +13,6 @@ After the user searches for a city, the weather is displayed, and the city is sa
 <img width="1084" alt="Screen Shot 2021-09-08 at 11 53 50 AM" src="https://user-images.githubusercontent.com/76274620/132546325-40b24598-2bbe-469f-9872-ba4831e172e7.png">
 
 The user can clear the searched city history and displayed weather by clicking on the clear button.
-
-<img width="1084" alt="Screen Shot 2021-09-08 at 11 54 19 AM" src="https://user-images.githubusercontent.com/76274620/132546617-8d34dc0b-1467-4410-b052-db62ae2e7d5c.png">
-
 The user can also search the weather of a saved city by clicking on the city.
 
 ### Demo of the app
