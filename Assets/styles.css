@@ -88,6 +88,9 @@ hr {
 li {
   margin-bottom: 2rem;
 }
+p {
+  margin-left: -0.8rem;
+}
 div {
   margin: 0.5rem;
   padding: 0.5rem;

@@ -7,11 +7,15 @@ let myKey = "52db57c9757e60965e92ca0e6d4c18a5";
 let units = "units=imperial";
 let storedCity = JSON.parse(localStorage.getItem("storedCity")) || [];
 let city;
-
+//get saved cities from local storage and display the as a list
 function displaySearchedCity() {
-  storedCity.forEach(function (i) {
-    $("#storedCity").append(`<li>${i}</li>`);
-  });
+  $("#storedCity").html("");
+  for (let i = 0; i < storedCity.length; i++) {
+    let li = document.createElement("button");
+    $(li).css({ width: "100%", "margin-block": "0.3rem" });
+    li.textContent = storedCity[i];
+    $("#storedCity").append(li);
+  }
   console.log(storedCity);
 }
 displaySearchedCity();
@@ -26,16 +30,16 @@ function getWeather(e) {
   if (storedCity.indexOf(city) === -1) {
     storedCity.push(city);
     localStorage.setItem("storedCity", JSON.stringify(storedCity));
+    displaySearchedCity();
   }
   let currentUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myKey}&${units}`;
   let forecastUrl = `http://api.openweathermap.org/data/2.5/forecast?q= ${city}&appid=${myKey}&${units}`;
   currentWeather(currentUrl);
   fiveDayWeather(forecastUrl);
   inputEl.value = "";
-  reset();
+  $(".futureForecast").html("");
 }
 
-function reset() {}
 //add event listener to search city form
 submitFormEl.addEventListener("click", getWeather);
 
@@ -50,18 +54,15 @@ function displayCurrentWeather(data) {
   //append city name, date, and icon to current weather section
   let currentDate = new Date(data.dt * 1000);
   $(".currentWeather").attr("style", "border: 1px solid black");
-  $("#city").append(
-    `${data.name} (${currentDate.toLocaleDateString("en-US")})`
-  );
-  $("figure").append(
-    `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"  alt="icon showing the weather">`
-  );
-
-  //append conditions to ul
-  $(".current").append(
-    `<li>Temp: ${data.main.temp}</li>`,
-    `<li>Wind: ${data.wind.speed} MPH</li>`,
-    `<li>Humidity: ${data.main.humidity} %</li>`
+  $(".currentWeather").html(
+    `<h2>${data.name} (${currentDate.toLocaleDateString("en-US")})</h2> <figure>
+    <img src="https://openweathermap.org/img/wn/${
+      data.weather[0].icon
+    }@2x.png"  alt="icon showing the weather"></figure><ul>  <li>Temp: ${
+      data.main.temp
+    }</li>
+    <li>Wind: ${data.wind.speed} MPH</li>
+    <li>Humidity: ${data.main.humidity} %</li></ul>`
   );
   getUv(data);
 }
@@ -71,7 +72,7 @@ async function getUv(data) {
   let queryUv = `https://api.openweathermap.org/data/2.5/uvi?appid=${myKey}&lat=${data.coord.lat}&lon=${data.coord.lon}`;
   const response = await fetch(queryUv);
   const uv = await response.json();
-  $(".current").append(`<li>UV Index: ${uv.value}`);
+  $(".currentWeather").append(`<p>UV Index: ${uv.value}</p>`);
 }
 //function to fetch 5 day weather
 async function fiveDayWeather(forecastUrl) {
@@ -90,5 +91,7 @@ function displayFiveDayWeather(data) {
     $(".futureForecast").append(
       `<div>${futureDate}<img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="icon showing the weather"> <ul><li>Temp: ${data.list[i].main.temp}</li><li>Wind: ${data.list[i].wind.speed} MPH</li><li>Humidity: ${data.list[i].main.humidity}%</li></ul></div`
     );
+
+    //
   });
 }
