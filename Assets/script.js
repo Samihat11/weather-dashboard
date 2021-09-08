@@ -25,8 +25,8 @@ displaySearchedCity();
 
 //fetch the current weather and forecast api's for the city the user inputs
 function getWeather(city) {
-  let currentUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myKey}&${units}`;
-  let forecastUrl = `http://api.openweathermap.org/data/2.5/forecast?q= ${city}&appid=${myKey}&${units}`;
+  let currentUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myKey}&${units}`;
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q= ${city}&appid=${myKey}&${units}`;
   currentWeather(currentUrl);
   fiveDayWeather(forecastUrl);
   inputEl.value = "";
