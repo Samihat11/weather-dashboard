@@ -20,7 +20,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="Assests/reset.css" />
+    <link rel="stylesheet" href="Assets/reset.css" />
     <link rel="stylesheet" href="Assets/styles.css" />
   </head>
   <body>
@@ -29,18 +29,26 @@
     </header>
     <aside>
       <form id="searchCity">
-        <label>Search for a City: <input type="text" /> </label>
-        <button>Search</button>
+        <label
+          >Search for a City:
+          <input type="text" id="cityName" placeholder="Enter a city" />
+        </label>
+        <button id="searchBtn">Search</button>
       </form>
       <hr />
       <button>Clear</button>
+      <ul id="storedCity"></ul>
     </aside>
     <main>
       <section class="currentWeather">
-      
-      </section class="5dayWeather">
-      <section><h3></h3></section>
+        <h2 id="city"></h2>
+        <figure></figure>
+        <ul class="current"></ul>
+      </section>
+      <h3 id="text"></h3>
+      <section class="futureForecast"></section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="Assets/script.js"></script>
   </body>
 </html>

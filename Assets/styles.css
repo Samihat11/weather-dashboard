@@ -1,8 +1,8 @@
 body {
   font-family: "Poppins", sans-serif;
-
+  font-size: 1.35rem;
   display: grid;
-  grid-template-columns: 30% auto;
+  grid-template-columns: 25% auto;
   grid-template-rows: 120px auto;
   grid-template-areas:
     "hd hd"
@@ -28,8 +28,18 @@ header {
 }
 h1 {
   color: white;
+  font-size: 3rem;
+  font-family: "Kaisei HarunoUmi", serif;
 }
-
+h2 {
+  font-size: 2.5rem;
+  font-weight: bolder;
+  font-family: "Kaisei HarunoUmi", serif;
+}
+h3 {
+  font-size: 2rem;
+  font-family: "Kaisei HarunoUmi", serif;
+}
 aside {
   grid-area: side;
   margin-left: 1rem;
@@ -40,24 +50,63 @@ main {
   grid-area: main;
   margin-inline: 1rem;
 }
+.currentWeather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(19, 8, 121);
+}
+.futureForecast {
+  display: flex;
+  flex-direction: row;
+}
 #searchCity {
   display: flex;
   flex-direction: column;
 }
 label {
   font-size: 1.5rem;
+  font-weight: bolder;
+  color: rgb(19, 8, 121);
 }
 input[type="text"] {
   display: block;
   width: 100%;
   border-radius: 0.5rem;
+  padding: 0.5rem;
 }
 button {
   border-radius: 0.5rem;
   background-color: rgba(149, 185, 222, 1);
   color: rgb(19, 8, 121);
+  padding: 0.5rem;
 }
 hr {
   width: 100%;
   border-color: black;
+}
+li {
+  margin-bottom: 2rem;
+}
+div {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  color: white;
+  border: rgb(126, 127, 131) 1px solid;
+  width: 100%;
+  background: rgb(99, 163, 226);
+  border-radius: 0.5rem;
+}
+@media (max-width: 45em) {
+  body {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+  }
+  .futureForecast {
+    flex-direction: column;
+  }
+  div {
+    text-align: center;
+  }
 }
