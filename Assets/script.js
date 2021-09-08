@@ -93,9 +93,6 @@ $("#clear").on("click", function () {
   $("#storedCity").html("");
   location.reload();
   return false;
-  // $(".currentWeather").html("");
-  // $(".futureForecast").html("");
-  // $("#text").text("");
 });
 
 //event listener and get city from user input or saved cities
