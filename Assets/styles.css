@@ -13,8 +13,6 @@ header {
   font-family: "Kaisei HarunoUmi", serif;
   grid-area: hd;
   margin-bottom: 1rem;
-  background: rgb(174, 187, 238);
-  background: rgb(149, 185, 222);
   background: linear-gradient(
     90deg,
     rgba(149, 185, 222, 1) 0%,
@@ -74,12 +72,14 @@ input[type="text"] {
   width: 100%;
   border-radius: 0.5rem;
   padding: 0.5rem;
+  margin-block: 0.5rem;
 }
 button {
   border-radius: 0.5rem;
   background-color: rgba(149, 185, 222, 1);
   color: rgb(19, 8, 121);
   padding: 0.5rem;
+  margin-bottom: 1rem;
 }
 hr {
   width: 100%;

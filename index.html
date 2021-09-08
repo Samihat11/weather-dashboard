@@ -16,10 +16,6 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
     <link rel="stylesheet" href="Assets/reset.css" />
     <link rel="stylesheet" href="Assets/styles.css" />
   </head>
@@ -27,21 +23,24 @@
     <header>
       <h1>Weather Dashboard</h1>
     </header>
+    <!-- search city and display saved cities-->
     <aside>
-      <form id="searchCity">
+      <section id="searchCity">
         <label>
           Search for a City:
           <input type="text" id="cityName" placeholder="Enter a city" />
         </label>
         <button id="searchBtn">Search</button>
-      </form>
+      </section>
       <hr />
-      <button>Clear</button>
+      <button id="clear">Clear</button>
       <ul id="storedCity"></ul>
     </aside>
     <main>
+      <!-- display current weather -->
       <section class="currentWeather"></section>
       <h3 id="text"></h3>
+      <!-- display 5 day forecast -->
       <section class="futureForecast"></section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -12,26 +12,19 @@ function displaySearchedCity() {
   $("#storedCity").html("");
   for (let i = 0; i < storedCity.length; i++) {
     let li = document.createElement("button");
-    $(li).css({ width: "100%", "margin-block": "0.3rem" });
+    $(li).attr("style", "width: 100%");
     li.textContent = storedCity[i];
     $("#storedCity").append(li);
+    //add event listener to buttons to get and display weather
+    $(li).on("click", function () {
+      getWeather(li.textContent);
+    });
   }
-  console.log(storedCity);
 }
 displaySearchedCity();
 
-//fetch the current weather api for the city the user inputs
-function getWeather(e) {
-  e.preventDefault();
-  city = inputEl.value;
-  if (city === "") {
-    return;
-  }
-  if (storedCity.indexOf(city) === -1) {
-    storedCity.push(city);
-    localStorage.setItem("storedCity", JSON.stringify(storedCity));
-    displaySearchedCity();
-  }
+//fetch the current weather and forecast api's for the city the user inputs
+function getWeather(city) {
   let currentUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${myKey}&${units}`;
   let forecastUrl = `http://api.openweathermap.org/data/2.5/forecast?q= ${city}&appid=${myKey}&${units}`;
   currentWeather(currentUrl);
@@ -40,15 +33,13 @@ function getWeather(e) {
   $(".futureForecast").html("");
 }
 
-//add event listener to search city form
-submitFormEl.addEventListener("click", getWeather);
-
 //function to fetch current weather
 async function currentWeather(currentUrl) {
   const response = await fetch(currentUrl);
   const data = await response.json();
   displayCurrentWeather(data);
 }
+
 //function to display the current weather
 function displayCurrentWeather(data) {
   //append city name, date, and icon to current weather section
@@ -80,18 +71,39 @@ async function fiveDayWeather(forecastUrl) {
   const data = await response.json();
   displayFiveDayWeather(data);
 }
+
+//function to display 5day weather forecast
 function displayFiveDayWeather(data) {
   $("#text").text("5 Day Forecast");
-  //since the weather forecast conditions are in an array use an array with numbers corresponding with the index of the data you want to extract
+  //use an array with numbers corresponding to the index of the data you want to extract
   let arr = [0, 8, 16, 24, 32];
-  //loop over the array and create an li for each condition
+  //loop over the array and create a div for each day with the weather conditions as list items
   arr.forEach(function (i) {
     let futureDate = new Date(data.list[i].dt * 1000);
     futureDate = futureDate.toLocaleDateString("en-US");
     $(".futureForecast").append(
       `<div>${futureDate}<img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="icon showing the weather"> <ul><li>Temp: ${data.list[i].main.temp}</li><li>Wind: ${data.list[i].wind.speed} MPH</li><li>Humidity: ${data.list[i].main.humidity}%</li></ul></div`
     );
-
-    //
   });
 }
+
+//clear local storage
+$("#clear").on("click", function () {
+  localStorage.clear();
+  $("#storedCity").html("");
+});
+
+//event listener and get city from user input or saved cities
+submitFormEl.addEventListener("click", function () {
+  city = inputEl.value;
+  if (city === "") {
+    return;
+  }
+  //store the searched city in an array in localStorage
+  if (storedCity.indexOf(city) === -1) {
+    storedCity.push(city);
+    localStorage.setItem("storedCity", JSON.stringify(storedCity));
+    displaySearchedCity();
+  }
+  getWeather(city);
+});
