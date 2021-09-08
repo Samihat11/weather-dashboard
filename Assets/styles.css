@@ -84,6 +84,7 @@ button {
 hr {
   width: 100%;
   border-color: black;
+  margin-bottom: 1rem;
 }
 li {
   margin-bottom: 2rem;
