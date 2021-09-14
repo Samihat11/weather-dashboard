@@ -90,7 +90,8 @@ li {
   margin-bottom: 2rem;
 }
 p {
-  margin-left: -0.8rem;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
 }
 div {
   margin: 0.5rem;
@@ -100,6 +101,36 @@ div {
   width: 100%;
   background: rgb(99, 163, 226);
   border-radius: 0.5rem;
+}
+.low {
+  border-radius: 0.3rem;
+  background-color: rgb(56, 94, 59);
+  color: white;
+  padding-inline: 1rem;
+}
+.moderate {
+  border-radius: 0.3rem;
+  background-color: rgb(252, 227, 3);
+  color: white;
+  padding-inline: 1rem;
+}
+.high {
+  border-radius: 0.3rem;
+  background-color: rgb(235, 115, 17);
+  color: white;
+  padding-inline: 1rem;
+}
+.veryHigh {
+  border-radius: 0.3rem;
+  background-color: red;
+  color: white;
+  padding-inline: 1rem;
+}
+.extreme {
+  border-radius: 0.3rem;
+  background-color: rgb(72, 31, 110);
+  color: white;
+  padding-inline: 1rem;
 }
 @media (max-width: 45em) {
   body {
