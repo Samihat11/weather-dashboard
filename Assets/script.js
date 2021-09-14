@@ -7,6 +7,7 @@ let myKey = "52db57c9757e60965e92ca0e6d4c18a5";
 let units = "units=imperial";
 let storedCity = JSON.parse(localStorage.getItem("storedCity")) || [];
 let city;
+
 //get saved cities from local storage and display the as a list
 function displaySearchedCity() {
   $("#storedCity").html("");
@@ -51,7 +52,7 @@ function displayCurrentWeather(data) {
       data.weather[0].icon
     }@2x.png"  alt="icon showing the weather"></figure><ul>  <li>Temp: ${
       data.main.temp
-    }</li>
+    } \u2109</li>
     <li>Wind: ${data.wind.speed} MPH</li>
     <li>Humidity: ${data.main.humidity} %</li></ul>`
   );
@@ -63,8 +64,28 @@ async function getUv(data) {
   let queryUv = `https://api.openweathermap.org/data/2.5/uvi?appid=${myKey}&lat=${data.coord.lat}&lon=${data.coord.lon}`;
   const response = await fetch(queryUv);
   const uv = await response.json();
-  $(".currentWeather").append(`<p>UV Index: ${uv.value}</p>`);
+  displayUvIndex(uv.value);
 }
+
+//function to display uvIndex
+function displayUvIndex(uv) {
+  console.log(uv);
+  $(".currentWeather").append(
+    `<p>UV Index: <span id = "span">${uv}</span></p>`
+  );
+  if (uv <= 3) {
+    $("#span").addClass("low");
+  } else if (uv > 3 && uv < 6) {
+    $("#span").addClass("moderate");
+  } else if (uv > 6 && uv < 8) {
+    $("#span").addClass("high");
+  } else if (uv > 8 && uv < 11) {
+    $("#span").addClass("veryHigh");
+  } else if (uv > 11) {
+    $("#span").addClass("extreme");
+  }
+}
+
 //function to fetch 5 day weather
 async function fiveDayWeather(forecastUrl) {
   const response = await fetch(forecastUrl);
@@ -82,7 +103,7 @@ function displayFiveDayWeather(data) {
     let futureDate = new Date(data.list[i].dt * 1000);
     futureDate = futureDate.toLocaleDateString("en-US");
     $(".futureForecast").append(
-      `<div>${futureDate}<img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="icon showing the weather"> <ul><li>Temp: ${data.list[i].main.temp}</li><li>Wind: ${data.list[i].wind.speed} MPH</li><li>Humidity: ${data.list[i].main.humidity}%</li></ul></div`
+      `<div>${futureDate}<figure><img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="icon showing the weather"></figure> <ul><li>Temp: ${data.list[i].main.temp} \u2109</li><li>Wind: ${data.list[i].wind.speed} MPH</li><li>Humidity: ${data.list[i].main.humidity}%</li></ul></div`
     );
   });
 }
